@@ -1,0 +1,38 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Podaj trzy liczby naturalne:");
+            int[] numbers = new int[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!int.TryParse(Console.ReadLine(), out numbers[i]) || numbers[i] <= 0)
+                {
+                    throw new ArgumentException("Podana wartość nie jest poprawną liczbą naturalną.");
+                }
+            }
+
+            Array.Sort(numbers);
+            int a = numbers[0], b = numbers[1], c = numbers[2];
+
+            if (a * a + b * b == c * c)
+            {
+                Console.WriteLine($"Liczby {a}, {b}, {c} tworzą trójkę pitagorejską.");
+            }
+            else
+            {
+                Console.WriteLine($"Liczby {a}, {b}, {c} NIE tworzą trójki pitagorejskiej.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Błąd: {ex.Message}");
+        }
+    }
+}
