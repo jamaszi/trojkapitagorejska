@@ -1,38 +1,29 @@
-using System;
-using System.Linq;
-
-class Program
+try
 {
-    static void Main()
+    Console.WriteLine("Wpisz trzy liczby calkowite:");
+
+    int x1 = Convert.ToInt32(Console.ReadLine());
+    int x2 = Convert.ToInt32(Console.ReadLine());
+    int x3 = Convert.ToInt32(Console.ReadLine());
+
+    int[] liczby = new int[] { x1, x2, x3 };
+    Array.Sort(liczby); // sortowanie rosnąco
+
+    double a2 = Math.Pow(liczby[0], 2);
+    double b2 = Math.Pow(liczby[1], 2);
+    double c2 = Math.Pow(liczby[2], 2);
+
+    if (a2 + b2 == c2)
     {
-        try
-        {
-            Console.WriteLine("Podaj trzy liczby naturalne:");
-            int[] numbers = new int[3];
-
-            for (int i = 0; i < 3; i++)
-            {
-                if (!int.TryParse(Console.ReadLine(), out numbers[i]) || numbers[i] <= 0)
-                {
-                    throw new ArgumentException("Podana wartość nie jest poprawną liczbą naturalną.");
-                }
-            }
-
-            Array.Sort(numbers);
-            int a = numbers[0], b = numbers[1], c = numbers[2];
-
-            if (a * a + b * b == c * c)
-            {
-                Console.WriteLine($"Liczby {a}, {b}, {c} tworzą trójkę pitagorejską.");
-            }
-            else
-            {
-                Console.WriteLine($"Liczby {a}, {b}, {c} NIE tworzą trójki pitagorejskiej.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Błąd: {ex.Message}");
-        }
+        Console.WriteLine("To sa liczby pitagorejskie.");
+    }
+    else
+    {
+        Console.WriteLine("To nie sa liczby pitagorejskie.");
     }
 }
+catch (FormatException)
+{
+    Console.WriteLine("Blad: wpisz poprawna liczbe calkowita.");
+}
+
